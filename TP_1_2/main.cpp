@@ -18,8 +18,7 @@ int main()
 	Keeper keeper;
 
 	cout << "Ввести изначальные данные из файла?(1/0)" << endl;
-	int method;
-	cin >> method; //add check
+	int method = safeInput(0, 1);
 	try
 	{
 		if (method == 1)
@@ -34,7 +33,7 @@ int main()
 	bool isExit = false;
 	while (!isExit) {
 		printMenu();
-		cin >> method; //add check
+		method = safeInput(0, 5);
 		switch (method)
 		{
 		case 1:
@@ -75,8 +74,7 @@ void addObject(Keeper& keeper)
 	cout << "1. Автомобиль" << endl;
 	cout << "2. Мотоцикл" << endl;
 	cout << "3. Автобус" << endl;
-	int typeInt;
-	cin >> typeInt; // add check
+	int typeInt = safeInput(1, 3);
 	string typeS;
 	if (typeInt == 1)
 		typeS = "Автомобиль";
@@ -97,16 +95,8 @@ void changeObject(Keeper& keeper)
 	{
 		keeper.printToConsole();
 		cout << "Выберете номер объекта для изменения: ";
-		int number;
-		cin >> number; //add check
-		try
-		{
-			keeper[number - 1]->change();
-		}
-		catch (int err)
-		{
-			cout << "Номер " << err + 1 << " не содержиться в массиве" << endl;
-		}
+		int number = safeInput(1, keeper.getSize());
+		keeper[number - 1]->change();
 	}
 }
 
@@ -118,15 +108,7 @@ void deleteObject(Keeper& keeper)
 	{
 		keeper.printToConsole();
 		cout << "Выберете номер объекта для удаления: ";
-		int number;
-		cin >> number; //add check
-		try
-		{
-			keeper.del(number - 1);
-		}
-		catch (int err)
-		{
-			cout << "Номер " << err + 1 << " не содержиться в массиве" << endl;
-		}
+		int number = safeInput(1, keeper.getSize());
+		keeper.del(number - 1);
 	}
 }

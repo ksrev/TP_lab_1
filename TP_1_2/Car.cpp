@@ -19,16 +19,18 @@ Car::Car(const Car& car) :
 
 void Car::inputFromConsole()
 {
+	Base::inputFromConsole();
 	cout << "Введите новый цвет: ";
 	getline(cin, color);
 	cout << "Введите новый тип КПП: ";
 	getline(cin, typeKPP);
 	cout << "Введите новый объем двигателя: ";
-	cin >> voluemeEnage; //todo inputDouble
+	voluemeEnage = safeInput(1.0, (double)INT32_MAX);
 }
 
 void Car::inputFromFile(std::ifstream& file, std::string& tmpS)
 {
+	Base::inputFromFile(file, tmpS);
 	string err = "Файл не может быть корректно прочитан";
 	if (!getline(file, tmpS))
 		throw err;
@@ -38,7 +40,7 @@ void Car::inputFromFile(std::ifstream& file, std::string& tmpS)
 	typeKPP = tmpS;
 	if (!getline(file, tmpS))
 		throw err;
-	voluemeEnage = stod(tmpS); //todo add check
+	voluemeEnage = (checkStringToDouble(tmpS) ? stod(tmpS) : 0);
 }
 
 void Car::printToConsole()
@@ -59,10 +61,11 @@ void Car::printToFile(ostream& out)
 
 void Car::change()
 {
+	Base::change();
 	cout << "Введите новый цвет: ";
 	getline(cin, color);
 	cout << "Введите новый тип КПП: ";
 	getline(cin, typeKPP);
 	cout << "Введите новый объем двигателя: ";
-	cin >> voluemeEnage; //todo inputDouble
+	voluemeEnage = safeInput(1.0, (double)INT32_MAX);
 }

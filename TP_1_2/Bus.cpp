@@ -1,12 +1,12 @@
 #include "Bus.h"
 
-Bus::Bus() : Base("Мотоцикл", "Не задано", "Не задано"), destination("Не задано"), countOfSeatst(0), allCount(0)
+Bus::Bus() : Base("Автобус", "Не задано", "Не задано"), destination("Не задано"), countOfSeatst(0), allCount(0)
 {
 	cout << "Вызван конструктор Bus" << endl;
 }
 
 Bus::Bus(string mark, string model, string destination, int countOfSeatst, int allCount) :
-	Base("Мотоцикл", mark, model), destination(destination), countOfSeatst(countOfSeatst), allCount(allCount)
+	Base("Автобус", mark, model), destination(destination), countOfSeatst(countOfSeatst), allCount(allCount)
 {
 	cout << "Вызван конструктор Bus" << endl;
 }
@@ -19,26 +19,29 @@ Bus::Bus(const Bus& bus) :
 
 void Bus::inputFromConsole()
 {
+	Base::inputFromConsole();
 	cout << "Введите конечный пукнт: ";
 	getline(cin, destination);
 	cout << "Введите количество сидячих мест: ";
-	cin >> countOfSeatst; //todo inputInt
+	countOfSeatst = safeInput(1, INT32_MAX);
 	cout << "Введите общее количество мест: ";
-	cin >> allCount;//todo inputInt
+	allCount = safeInput(countOfSeatst, INT32_MAX);
 }
 
 void Bus::inputFromFile(std::ifstream& file, std::string& tmpS)
 {
+	Base::inputFromFile(file, tmpS);
 	string err = "Файл не может быть корректно прочитан";
 	if (!getline(file, tmpS))
 		throw err;
 	destination = tmpS;
 	if (!getline(file, tmpS))
 		throw err;
-	countOfSeatst = stoi(tmpS); //todo add check
+	
+	countOfSeatst = (checkStringToInt(tmpS) ? stoi(tmpS) : 0);
 	if (!getline(file, tmpS))
 		throw err;
-	allCount = stoi(tmpS); //todo add check
+	allCount = (checkStringToInt(tmpS) ? stoi(tmpS) : 0);
 }
 
 void Bus::printToConsole()
@@ -59,10 +62,11 @@ void Bus::printToFile(ostream& out)
 
 void Bus::change()
 {
+	Base::change();
 	cout << "Введите новый конечный пукнт: ";
 	getline(cin, destination);
 	cout << "Введите новое количество сидячих мест: ";
-	cin >> countOfSeatst; //todo inputInt
+	countOfSeatst = safeInput(1, INT32_MAX);
 	cout << "Введите новое общее количество мест: ";
-	cin >> allCount;//todo inputInt
+	allCount = safeInput(countOfSeatst, INT32_MAX);
 }

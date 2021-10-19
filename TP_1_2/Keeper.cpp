@@ -75,11 +75,14 @@ void Keeper::inputFromFile()
 			string err = "Файл не может быть прочитан";
 			throw err;
 		}
-		countRecord = stoi(tmpS); //add check
+		countRecord = (checkStringToInt(tmpS) ? stoi(tmpS) : 0);
 		try
 		{
 			for (int i = 0; i < countRecord; i++)
 			{
+				string err = "Файл не может быть корректно прочитан";
+				if (!getline(input, tmpS))
+					throw err;
 				Base* obj = createObj(tmpS);
 				obj->inputFromFile(input, tmpS);
 				this->add(obj);
@@ -94,7 +97,7 @@ void Keeper::inputFromFile()
 	}
 	else
 	{
-		string err = "Файл не найден";
+		string err = "Файл keeper.txt не найден";
 		throw err;
 	}
 }

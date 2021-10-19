@@ -19,26 +19,28 @@ Bike::Bike(const Bike& bike) :
 
 void Bike::inputFromConsole()
 {
+	Base::inputFromConsole();
 	cout << "¬ведите метсность: ";
 	getline(cin, typeArea);
 	cout << "¬ведите объем двигател€: ";
-	cin >> voluemeEnage; //todo inputDouble
+	voluemeEnage = safeInput(1.0, (double)INT32_MAX);
 	cout << "¬ведите мощность двигател€: ";
-	cin >> powerEnage;//todo inputDouble
+	powerEnage = safeInput(1.0, (double)INT32_MAX);
 }
 
 void Bike::inputFromFile(std::ifstream& file, std::string& tmpS)
 {
+	Base::inputFromFile(file, tmpS);
 	string err = "‘айл не может быть корректно прочитан";
 	if (!getline(file, tmpS))
 		throw err;
 	typeArea = tmpS;
 	if (!getline(file, tmpS))
 		throw err;
-	voluemeEnage = stod(tmpS); //todo add check
+	voluemeEnage = (checkStringToDouble(tmpS) ? stod(tmpS) : 0);
 	if (!getline(file, tmpS))
 		throw err;
-	powerEnage = stod(tmpS); //todo add check
+	powerEnage = (checkStringToDouble(tmpS) ? stod(tmpS) : 0);
 }
 
 void Bike::printToConsole()
@@ -59,10 +61,11 @@ void Bike::printToFile(ostream& out)
 
 void Bike::change()
 {
+	Base::change();
 	cout << "¬ведите новую метсность: ";
 	getline(cin, typeArea);
 	cout << "¬ведите новый объем двигател€: ";
-	cin >> voluemeEnage; //todo inputDouble
+	voluemeEnage = safeInput(1.0, (double)INT32_MAX);
 	cout << "¬ведите новую мощность двигател€: ";
-	cin >> powerEnage;//todo inputDouble
+	powerEnage = safeInput(1.0, (double)INT32_MAX);
 }
