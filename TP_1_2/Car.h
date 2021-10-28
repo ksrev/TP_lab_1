@@ -11,7 +11,7 @@ public:
 	Car();
 	Car(string mark, string model, string color, string typeKPP, double voluemeEnage);
 	Car(const Car& car);
-	~Car() { cout << "Âûçâàí äåñòðóêòîð Car" << endl; }
+	~Car() { cout << "Ã‚Ã»Ã§Ã¢Ã Ã­ Ã¤Ã¥Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Car" << endl; }
 
 	virtual void inputFromConsole();
 	virtual void inputFromFile(std::ifstream& file, std::string& tmpS);
@@ -22,8 +22,8 @@ public:
 	string getColor() { return color; }
 	void setColor(string _color) { color = _color; }
 
-	string getColor() { return typeKPP; }
-	void setColor(string _typeKPP) { typeKPP = _typeKPP; }
+	string getTypeKPP() { return typeKPP; }
+	void setTypeKPP(string _typeKPP) { typeKPP = _typeKPP; }
 
 	double getVoluemeEnage() { return voluemeEnage; }
 	void setVoluemeEnage(double _voluemeEnage) { voluemeEnage = _voluemeEnage; }
