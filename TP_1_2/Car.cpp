@@ -1,37 +1,37 @@
 #include "Car.h"
 
-Car::Car() : Base("Автомобиль", "Не задано", "Не задано"), color("Не задано"), typeKPP("Не задано"), voluemeEnage(0.0)
+Car::Car() : Base("Е”ГўЕ€Г®Д›Г®ГЎДЌГ«Гј", "ГЌДє Г§Е•Г¤Е•Г­Г®", "ГЌДє Г§Е•Г¤Е•Г­Г®"), color("ГЌДє Г§Е•Г¤Е•Г­Г®"), typeKPP("ГЌДє Г§Е•Г¤Е•Г­Г®"), voluemeEnage(0.0)
 {
-	cout << "Вызван конструктор Car" << endl;
+	cout << "Г‚Е±Г§ГўЕ•Г­ Д™Г®Г­Е„Е€Д‘ГіД™Е€Г®Д‘ Car" << endl;
 }
 
 Car::Car(string mark, string model, string color, string typeKPP, double voluemeEnage) : 
-	Base("Автомобиль", mark, model), color(color), typeKPP(typeKPP), voluemeEnage(voluemeEnage)
+	Base("Е”ГўЕ€Г®Д›Г®ГЎДЌГ«Гј", mark, model), color(color), typeKPP(typeKPP), voluemeEnage(voluemeEnage)
 {
-	cout << "Вызван конструктор Car" << endl;
+	cout << "Г‚Е±Г§ГўЕ•Г­ Д™Г®Г­Е„Е€Д‘ГіД™Е€Г®Д‘ Car" << endl;
 }
 
 Car::Car(const Car& car) :
 	Base(car), color(car.color), typeKPP(car.typeKPP), voluemeEnage(car.voluemeEnage)
 {
-	cout << "Вызван конструктор копирования Car" << endl;
+	cout << "Г‚Е±Г§ГўЕ•Г­ Д™Г®Г­Е„Е€Д‘ГіД™Е€Г®Д‘ Д™Г®ДЏДЌД‘Г®ГўЕ•Г­ДЌЛ™ Car" << endl;
 }
 
 void Car::inputFromConsole()
 {
 	Base::inputFromConsole();
-	cout << "Введите новый цвет: ";
+	cout << "Р’РІРµРґРёС‚Рµ С†РІРµС‚: ";
 	getline(cin, color);
-	cout << "Введите новый тип КПП: ";
+	cout << "Р’РІРµРґРёС‚Рµ С‚РёРї РљРџРџ: ";
 	getline(cin, typeKPP);
-	cout << "Введите новый объем двигателя: ";
+	cout << "Р’РІРµРґРёС‚Рµ РѕР±СЉРµРј РґРІРёРіР°С‚РµР»СЏ: ";
 	voluemeEnage = safeInput(1.0, (double)INT32_MAX);
 }
 
 void Car::inputFromFile(std::ifstream& file, std::string& tmpS)
 {
 	Base::inputFromFile(file, tmpS);
-	string err = "Файл не может быть корректно прочитан";
+	string err = "Г”Е•Г©Г« Г­Дє Д›Г®Д‡ДєЕ€ ГЎЕ±Е€Гј Д™Г®Д‘Д‘ДєД™Е€Г­Г® ДЏД‘Г®Г·ДЌЕ€Е•Г­";
 	if (!getline(file, tmpS))
 		throw err;
 	color = tmpS;
@@ -46,9 +46,9 @@ void Car::inputFromFile(std::ifstream& file, std::string& tmpS)
 void Car::printToConsole()
 {
 	Base::printToConsole();
-	cout << "Цвет: " << color << endl;
-	cout << "Тип КПП: " << typeKPP << endl;
-	cout << "Объем двигателя: " << voluemeEnage << endl;
+	cout << "Г–ГўДєЕ€: " << color << endl;
+	cout << "Е‡ДЌДЏ ДДЋДЋ: " << typeKPP << endl;
+	cout << "ГЋГЎГєДєД› Г¤ГўДЌДѓЕ•Е€ДєГ«Л™: " << voluemeEnage << endl;
 }
 
 void Car::printToFile(ostream& out)
@@ -62,10 +62,10 @@ void Car::printToFile(ostream& out)
 void Car::change()
 {
 	Base::change();
-	cout << "Введите новый цвет: ";
+	cout << "Г‚ГўДєГ¤ДЌЕ€Дє Г­Г®ГўЕ±Г© Г¶ГўДєЕ€: ";
 	getline(cin, color);
-	cout << "Введите новый тип КПП: ";
+	cout << "Г‚ГўДєГ¤ДЌЕ€Дє Г­Г®ГўЕ±Г© Е€ДЌДЏ ДДЋДЋ: ";
 	getline(cin, typeKPP);
-	cout << "Введите новый объем двигателя: ";
+	cout << "Г‚ГўДєГ¤ДЌЕ€Дє Г­Г®ГўЕ±Г© Г®ГЎГєДєД› Г¤ГўДЌДѓЕ•Е€ДєГ«Л™: ";
 	voluemeEnage = safeInput(1.0, (double)INT32_MAX);
 }
