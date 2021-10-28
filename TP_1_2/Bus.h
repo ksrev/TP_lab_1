@@ -17,5 +17,14 @@ public:
 	virtual void printToConsole();
 	virtual void printToFile(ostream& out);
 	virtual void change();
+
+	string geDestination() { return destination; }
+	void setDestination(string _destination) { destination = _destination; }
+
+	int getCountOfSeatst() { return countOfSeatst; }
+	void setCountOfSeatst(int _countOfSeatst) { countOfSeatst = _countOfSeatst; }
+
+	int getAllCount() { return allCount; }
+	void setAllCount(int _allCount) { allCount = allCount; }
 };
 

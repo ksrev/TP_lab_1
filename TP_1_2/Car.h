@@ -18,5 +18,14 @@ public:
 	virtual void printToConsole();
 	virtual void printToFile(ostream& out);
 	virtual void change();
+
+	string getColor() { return color; }
+	void setColor(string _color) { color = _color; }
+
+	string getColor() { return typeKPP; }
+	void setColor(string _typeKPP) { typeKPP = _typeKPP; }
+
+	double getVoluemeEnage() { return voluemeEnage; }
+	void setVoluemeEnage(double _voluemeEnage) { voluemeEnage = _voluemeEnage; }
 };
 

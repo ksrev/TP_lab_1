@@ -17,5 +17,14 @@ public:
 	virtual void printToConsole();
 	virtual void printToFile(ostream& out);
 	virtual void change();
+
+	string getTypeArea() { return typeArea; }
+	void setTypeArea(string _typeArea) { typeArea = _typeArea; }
+
+	double getVoluemeEnage() { return voluemeEnage; }
+	void setVoluemeEnage(double _voluemeEnage) { voluemeEnage = _voluemeEnage; }
+
+	double getPowerEnage() { return powerEnage; }
+	void setPowerEnage(double _powerEnage) { powerEnage = _powerEnage; }
 };
 
